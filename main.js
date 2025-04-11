@@ -58,12 +58,13 @@ const questionAdder = (selQest) => {
 
 main.innerHTML = quizTemplate
 next.style.display ="inline"
+
 let ans = selQest[index].ans 
-let highlight = document.querySelector(`#lb${ans}`)
+let highlight = document.querySelector(` #lb${ans}`)
 console.log(ans);
 highlight.style.color ="green"
 
-answersHTML +=quizTemplate
+answerCont.innerHTML += quizTemplate
 
 
 
@@ -97,7 +98,7 @@ const checkIsAnswered = () => {
     }
     return false
 }
-let index =1;
+let index =0
 let score =0;
 
 
@@ -106,9 +107,9 @@ next.addEventListener('click', () => {
 let val = checkIsAnswered();
 
 if ( val == true ) {
+    index+=1
    questionAdder(selectedQuestion,index,score)
 
-    index+=1
 }
 
     
@@ -121,7 +122,7 @@ start.addEventListener('click', () => {
    
 })
 
-againBtn.addEventListener('click',(e) =>{
+againbtn.addEventListener('click',(e) =>{
     console.log(index);
     index =0
     score =0
@@ -130,10 +131,10 @@ againBtn.addEventListener('click',(e) =>{
 })
 const answerCont = document.querySelector("#answers") 
 
-const answersOnDom = () =>{
-    answerCont.innerHTML = answersHTML 
+export const dataSend ={
+    key : selectedQuestion,
+    type : "module"
 }
-
 
 
 // 10 questions ka object bnana hai -> 
