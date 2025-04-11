@@ -1,51 +1,107 @@
-*{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-html,body{
-height: 100%;
-width: 100%;
-}
-/* #main{
-    height: 50vh;
-    width: 80vw;
-}
-#form{
-    height: 40%;
-    width: 100%;
-    margin: 0 auto;
-    padding: 50px;
-}
-#main #next{
-            margin-left:40px ;
-            padding: 10px;
-} */
-#answers{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-/* #main{
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 
+html, body {
+    height: 100%;
+    width: 100%;
+  background: url(https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yMzMtZXllLTAyLmpwZw.jpg);
+   
+    padding: 1rem;
 }
-#startQuiz{
-    width: 100px;
-    padding: 10px;
-    background-color: transparent;
+
+#main {
+    background-color: #1f1f1f;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #ff6f61;
+}
+
+h2, h3 {
+    margin: 1rem 0;
+}
+
+span {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+button {
+    background-color: #4caf50;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    cursor: pointer;
     color: white;
-    border-radius:40px ;
+    transition: 0.3s ease;
 }
-#main > h1{
-        font-size: 5rem;
+
+button:hover {
+    background-color: #45a049;
 }
-#main div h1 span {
-        font-size: 5rem;
-} */
+
+#answers {
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+    align-items: center;
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #2a2a2a;
+    padding: 1.5rem;
+    border-radius: 12px;
+    width: 100%;
+}
+
+#inputs {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    
+    gap: 0.2rem;
+}
+
+label {
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.correct {
+    background-color: #388e3c;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+}
+
+.wrong {
+    background-color: #d32f2f;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+}

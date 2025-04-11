@@ -4,19 +4,19 @@ const data = Rawdata.key;
 
 const main = document.querySelector("#main")
 
-let selectedQuestion =[]
-let answersHTML=" ";
+let selectedQuestion = []
+let answersHTML = " ";
 
 // selects questions
 const qstnSelector = (data) => {
     let random
     for (let i = 0; i < 10; i++) {
-         random = Math.floor(Math.random()* 1000)
-         selectedQuestion.push(data[random])
+        random = Math.floor(Math.random() * 1000)
+        selectedQuestion.push(data[random])
     }
 
-    
-    console.log(selectedQuestion); 
+
+    console.log(selectedQuestion);
 
 }
 
@@ -25,13 +25,16 @@ const next = document.querySelector("#next")
 
 const questionAdder = (selQest) => {
 
-    if(index >=10) {
-        answersOnDom()
+    if (index >= 10) {
+        alert(`your score is ${score}`)
+        answerCont.style.display = "block"
+        againbtn.style.display ="block"
+        func()
         return
     }
-        const quizTemplate = `
+    const quizTemplate = `
 <form action="get" id="form">
-<h2 id="qstnNum">Question ${index+1}</h2>
+<h2 id="qstnNum">Question ${index + 1}</h2>
 <br>
 <h3 id="qstn">${selQest[index].quest}</h3>
 <div id="inputs">
@@ -56,84 +59,105 @@ const questionAdder = (selQest) => {
 
 </form>`
 
-main.innerHTML = quizTemplate
-next.style.display ="inline"
+    main.innerHTML = quizTemplate
+    next.style.display = "inline"
 
-let ans = selQest[index].ans 
-let highlight = document.querySelector(` #lb${ans}`)
-console.log(ans);
-highlight.style.color ="green"
+    let anss = selQest[index].ans
 
-answerCont.innerHTML += quizTemplate
-
+    answerCont.innerHTML += quizTemplate
 
 
 }
 
-const againbtn =document.querySelector("#againBtn")
+const againbtn = document.querySelector("#againBtn")
 const checkIsAnswered = () => {
-    
+
     for (let i = 1; i <= 4; i++) {
-        
-        const inputs =document.querySelector(`#opt${i}`)
-       
-       if(inputs.checked == true){ 
 
-        if(index >=10){
-            againbtn.style.display ="block"
-            alert(`your score is ${score}`)
-            answersOnDom()
+        const inputs = document.querySelector(`#opt${i}`)
 
-            
+        if (inputs.checked == true) {
+
+            if (index >= 10) {
+                againbtn.style.display = "block"
+               
+                answersOnDom()
+
+
+            }
+            let condition = (selectedQuestion[index].ans == i)
+
+
+            if (condition) score += 10
+
+
+            return true
         }
-           let condition = (selectedQuestion[index].ans == i)
-           
-           
-           if( condition ) score +=10
-           
 
-        return true
-    }
-       
     }
     return false
 }
-let index =0
-let score =0;
+let index = 0
+let score = 0;
 
 
 next.addEventListener('click', () => {
-    
-let val = checkIsAnswered();
 
-if ( val == true ) {
-    index+=1
-   questionAdder(selectedQuestion,index,score)
+    let val = checkIsAnswered();
 
-}
+    if (val == true) {
+        index += 1
+        questionAdder(selectedQuestion, index, score)
 
-    
+    }
+
+
 })
 
 
 start.addEventListener('click', () => {
-   qstnSelector(data)
-    questionAdder(selectedQuestion,0,0)
+    qstnSelector(data)
+    questionAdder(selectedQuestion, 0, 0)
    
+
 })
 
-againbtn.addEventListener('click',(e) =>{
+againbtn.addEventListener('click', (e) => {
     console.log(index);
-    index =0
-    score =0
-    questionAdder(selectedQuestion,score);
-   
-})
-const answerCont = document.querySelector("#answers") 
+    index = 0
+    score = 0
+    questionAdder(selectedQuestion, score);
+    answerCont.innerHTML = ""
 
-export const dataSend ={
-    key : selectedQuestion,
-    type : "module"
+})
+const answerCont = document.querySelector("#answers")
+answerCont.style.display = "none"
+
+
+const func = () => {
+    for (let i = 0; i < 10; i++) {
+
+        let ansIndex = selectedQuestion[i].ans
+        console.log(ansIndex);
+
+        // let lb = `lb${ansIndex}`
+        let domTreeAccess = answerCont.children[i].children[3].children
+
+        if (ansIndex == 0) 
+                            domTreeAccess.lb1.style.backgroundColor = "green"
+
+        else if (ansIndex == 1) 
+                            domTreeAccess.lb2.style.backgroundColor = "green"
+
+        else if (ansIndex == 2) 
+                            domTreeAccess.lb3.style.backgroundColor = "green"
+
+        else 
+            domTreeAccess.lb4.style.backgroundColor = "green"
+
+
+
+    }
 }
 
 
