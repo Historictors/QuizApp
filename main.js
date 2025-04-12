@@ -22,6 +22,7 @@ const qstnSelector = (data) => {
 
 const start = document.querySelector("#startQuiz")
 const next = document.querySelector("#next")
+const scoreEle = document.querySelector("#score")
 
 const questionAdder = (selQest) => {
 
@@ -33,6 +34,7 @@ const questionAdder = (selQest) => {
         return
     }
     const quizTemplate = `
+    <h2> score : <h3 id="score">${score}</h3></h2>
 <form action="get" id="form">
 <h2 id="qstnNum">Question ${index + 1}</h2>
 <br>
@@ -61,6 +63,7 @@ const questionAdder = (selQest) => {
 
     main.innerHTML = quizTemplate
     next.style.display = "inline"
+    scoreEle.innerHTML = score
 
     let anss = selQest[index].ans
 
